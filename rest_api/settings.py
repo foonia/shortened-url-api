@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+DOMAIN = 'localhost:8000/'
 # Application definition
 
 INSTALLED_APPS = [
