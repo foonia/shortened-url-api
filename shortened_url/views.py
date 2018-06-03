@@ -9,11 +9,12 @@ from .models import Url
 from .validations import validate
 
 class TargetUrlAPIView(APIView):
-    def get(self, request, target_url):
+    def get(self, request):
         """
         대상 url과 함께 요청 시 단축 url을 반환
         """
         url_validator = URLValidator() 
+        target_url = request.GET.get('url', '')
 
         try:
             url_validator(target_url)
@@ -33,7 +34,8 @@ class ShortUrlAPIView(APIView):
     """
     단축 url과 함께 요청 시 해당 단축 url 접속 횟수 반환
     """
-    def get(self, request, short_url):
+    def get(self, request):
+        short_url = request.GET.get('url', '')
         http_host = settings.DOMAIN
         index = short_url.find(http_host)
         slice_short_url = short_url[index + len(http_host):]

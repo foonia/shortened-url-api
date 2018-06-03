@@ -15,7 +15,10 @@ class  Url(models.Model):
 
         shortened_url = ''
         _id = entry.id
-
+        
+        """
+        Makes a short ID based on entry.id
+        """
         while(_id > 0):
             shortened_url += cls.replace_str[_id % cls.replace_size]
             _id = _id // cls.replace_size 
