@@ -47,7 +47,8 @@ class ShortUrlAPIView(APIView):
     """
     단축 url과 함께 요청 시 지정 단축 url을 삭제
     """
-    def delete(self, request, short_url):
+    def delete(self, request):
+        short_url = request.GET.get('url', '')
         http_host = settings.DOMAIN
         index = short_url.find(http_host)
         slice_short_url = short_url[index + len(http_host):]
